@@ -21,23 +21,29 @@ para tener dónde trabajar con mi grupo.
    reserva queda registrada a mi nombre.
 2. **Dado** que elijo como inicio las 10:00 y como fin las 09:00, **Cuando** intento reservar,
    **Entonces** la reserva se rechaza con el mensaje "La hora de fin debe ser posterior a la de inicio".
+3. **Dado** que la sala A ya está reservada de 10:00 a 11:00, **Cuando** intento reservarla de
+   09:00 a 10:30, **Entonces** la reserva se rechaza con el mensaje "La sala ya está reservada en ese horario.".
+4. **Dado** que la sala A ya está reservada de 10:00 a 11:00, **Cuando** intento reservarla de
+   10:30 a 12:00, **Entonces** la reserva se rechaza con el mensaje "La sala ya está reservada en ese horario.".
+5. **Dado** que la sala A ya está reservada de 10:00 a 11:00, **Cuando** intento reservarla de
+   10:15 a 10:45, **Entonces** la reserva se rechaza con el mensaje "La sala ya está reservada en ese horario.".
+6. **Dado** que la sala A ya está reservada de 10:00 a 11:00, **Cuando** intento reservarla de
+   09:00 a 12:00, **Entonces** la reserva se rechaza con el mensaje "La sala ya está reservada en ese horario.".
+7. **Dado** que la sala A ya está reservada de 09:00 a 10:00, **Cuando** intento reservarla de
+   10:00 a 11:00, **Entonces** la reserva queda registrada a mi nombre.
 
 ### Edge Cases
 
-- ¿Qué pasa si la sala ya está ocupada en ese horario?
+- Dos reservas de la misma sala no pueden solaparse. Una reserva que comienza exactamente cuando termina otra puede realizarse.
 
 ## Requirements
 
 ### Functional Requirements
 
 - **FR-001**: El estudiante elige una sala, una hora de inicio y una hora de fin.
-- **FR-002**: La pantalla `ReservaPage` usa un `DropdownButton` para las salas y `showTimePicker`
-  para las horas.
-- **FR-003**: El estado del formulario se maneja con `setState` dentro de
-  `lib/presentation/reserva_page.dart`.
-- **FR-004**: La reserva se guarda en la tabla `reservas` de Supabase usando el paquete
-  `supabase_flutter`.
-- **FR-005**: La hora de fin debe ser posterior a la hora de inicio.
+- **FR-002**: Una reserva válida queda registrada a nombre del estudiante.
+- **FR-003**: La hora de fin debe ser posterior a la hora de inicio.
+- **FR-004**: Dos reservas de la misma sala no pueden solaparse. Se permite una reserva que comienza exactamente cuando termina otra.
 
 ### Key Entities
 
